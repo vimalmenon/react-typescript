@@ -4,8 +4,8 @@ import {
 	useParams
 } from "react-router-dom";
 
-const CountryCode = () => {
-	let { code } = useParams();
+const CountryCode:React.FC = () => {
+	const { code } = useParams();
 	return (
 		<div>
 			Id : {code}

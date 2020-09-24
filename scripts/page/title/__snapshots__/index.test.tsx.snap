@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title component : Snapshot renders : 1`] = `
+<header
+  className="sc-bdnylx dpKAAl"
+>
+  COVID-19 React Tracking Application
+</header>
+`;

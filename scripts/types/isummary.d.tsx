@@ -22,6 +22,7 @@ export interface IGlobal {
 
 export interface ISummary {
     Countries:ICountry[];
+    Message:string;
     Global:IGlobal;
     Date:string;
 }

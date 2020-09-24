@@ -11,6 +11,9 @@
         "preserveConstEnums": true,
         "baseUrl": "./",
         "typeRoots" : ["./typings"],
+        "types": [
+            "@types/jest"
+        ],
         "paths": {
             "utility": ["scripts/utility"],
             "const" : ["scripts/const"],

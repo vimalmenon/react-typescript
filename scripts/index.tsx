@@ -7,7 +7,7 @@ import {
 	BrowserRouter as Router
 } from "react-router-dom";
 
-import Main from "./pages";
+import Main from "./page";
 
 ReactDOM.render(
 	<Router>

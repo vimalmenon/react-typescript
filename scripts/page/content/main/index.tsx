@@ -5,9 +5,10 @@ import styled from "styled-components";
 
 import {ICountry} from "../../../types/isummary.d";
 
-import context from "../../index.context";
+import context from "../index.context";
 
 import Country from "./country";
+import Search from "./search";
 
 import {SortIcon} from "../../../dumb-components";
 
@@ -74,21 +75,13 @@ const ContentWrapper  = styled.section`
 	}
 `;
 
-const Main = () => {
+const Main:React.FC = () => {
 	const value = React.useContext(context);
 	const Countries = value?.data?.Countries||[];
 	const Global = value?.data?.Global;
-	const date = new Intl.DateTimeFormat("en-GB", {
-		hour:"2-digit",
-		minute:"2-digit",
-		second:"2-digit",
-		year: "numeric",
-		month: "long",
-		day: "2-digit"
-	}).format(new Date(value?.data?.Date||""));
-	const getDate = value?.getData;
 	const [SortedCountries, setCountries] = React.useState<ICountry[]>([]);
 	const [sortIndex, setSortIndex] = React.useState<number>(2);
+	const [search, setSearch] = React.useState<string>("");
 	const sortCountries = (sortValue, updatedSortedIndex) => {
 		setCountries([...sortArray<ICountry>(Countries, sortValue, updatedSortedIndex>0)]);
 		setSortIndex(updatedSortedIndex);
@@ -98,14 +91,9 @@ const Main = () => {
 	}, []);
 	return (
 		<ContentWrapper>
-			<div>
-				<span>
-					Last Updated On: {date}
-				</span>
-				<button onClick={getDate}>
-					Refresh
-				</button>
-			</div>
+			<Search 
+				search={search}
+				setSearch={setSearch} />
 			{value && Countries && Global?
 				<div className="table">
 					<div className="table-head">
@@ -131,12 +119,14 @@ const Main = () => {
 						<div>{Global.NewRecovered?`+${Global.NewRecovered}`: Global.NewRecovered}</div>
 					</div>
 					{SortedCountries.map((country, key) => {
-						return (
-							<Country 
-								index={key} 
-								country={country} 
-								key={country.CountryCode} />
-						);
+						if(country.Country.toLowerCase().indexOf(search) >= 0) {
+							return (
+								<Country 
+									index={key} 
+									country={country} 
+									key={key} />
+							);
+						}
 					})}
 				</div>:
 				null
