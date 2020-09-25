@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoRoute component : Snapshot renders : 1`] = `
+<section
+  className="sc-bdnylx eFcNAu"
+>
+  <span>
+    No Page Found.
+  </span>
+  <span>
+    Go back to 
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      Home
+    </a>
+  </span>
+</section>
+`;

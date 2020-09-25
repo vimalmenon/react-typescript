@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import {IError} from "../../types/idumbcomponents.d";
+import {IError} from "../../types/icomponent.d";
 
 const ErrorWrapper  = styled.section`
 	display:flex;

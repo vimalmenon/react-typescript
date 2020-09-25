@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {ISortProps} from "../../types/idumbcomponents.d";
+import {ISortProps} from "../../types/icomponent.d";
 
 const SortIcon:React.FC<ISortProps> = ({sortIndex, currentIndex}) => {
 	if(Math.abs(sortIndex) === currentIndex) {

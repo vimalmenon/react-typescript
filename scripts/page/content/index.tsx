@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 import {
+	BrowserRouter as Router,
 	Switch,
 	Route
 } from "react-router-dom";
@@ -11,9 +12,9 @@ import CountryCode from "./country-code";
 
 import context from "./index.context";
 
-import {init} from "./index.service";
+import {useInit} from "./index.service";
 
-import {Error, Loading} from "../../dumb-components";
+import {Error, Loading, NoRoute} from "../../dumb-components";
 
 const ContentWrapper  = styled.section`
 	display:flex;
@@ -22,9 +23,9 @@ const ContentWrapper  = styled.section`
 	padding:1rem;
 `;
 
+
 const Content:React.FC = () => {
-	const {loading, error, getData, data} = init();
-	console.log(error);
+	const {loading, error, getData, data} = useInit();
 	React.useEffect(() => {
 		getData();
 	}, []);
@@ -38,14 +39,17 @@ const Content:React.FC = () => {
 		);
 	} 
 	return (
-		<context.Provider value={{data, getData}}>
-			<ContentWrapper>
-				<Switch>
-					<Route path="/:code" component={CountryCode} />
-					<Route path="/" component={Main} />
-				</Switch>
-			</ContentWrapper>
-		</context.Provider>
+		<ContentWrapper>
+			<context.Provider value={{data, getData}}>
+				<Router>	
+					<Switch>
+						<Route exact path="/:code" component={CountryCode} />
+						<Route exact path="/" component={Main} />
+						<Route component={NoRoute} />
+					</Switch>
+				</Router>
+			</context.Provider>
+		</ContentWrapper>
 	);
 	
 	

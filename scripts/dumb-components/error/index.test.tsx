@@ -2,7 +2,7 @@ import "jsdom-global/register";
 import * as React from "react";
 import * as renderer from "react-test-renderer";
 import Error from "./index";
-import {mount} from "enzyme";
+import {shallow} from "enzyme";
 
 describe("Error component :", () => {
     const message = "test";
@@ -14,8 +14,8 @@ describe("Error component :", () => {
     });
     
     test("Renders the message passed as props :", () => {
-        const wrapper = mount(<Error message={message}/>);
-        expect(wrapper.find('span').text()).toEqual("test");
+        const wrapper = shallow(<Error message={message}/>);
+        expect(wrapper.text()).toEqual(message);
         
     });
 

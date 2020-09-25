@@ -1,8 +1,9 @@
+import { ISearch } from "../../../../types/icomponent.d";
 import * as React from "react";
 import styled from "styled-components";
 
 
-import context from "../index.context";
+import context from "../../index.context";
 
 const SearchWrapper  = styled.div`
 	display:flex;
@@ -32,11 +33,6 @@ const SearchWrapper  = styled.div`
 	}
 `;
 
-interface ISearch {
-	search:string;
-	setSearch:(e)=>void;
-}
-
 const Search:React.FC<ISearch>  = ({search, setSearch}) => {
 	const value = React.useContext(context);
 	const date = new Intl.DateTimeFormat("en-GB", {
@@ -46,19 +42,20 @@ const Search:React.FC<ISearch>  = ({search, setSearch}) => {
 		year: "numeric",
 		month: "long",
 		day: "2-digit"
-	}).format(new Date(value?.data?.Date||""));
+	})?.format(new Date(value?.data?.Date||""));
 	return (
 		<SearchWrapper>
 			<div className="search">
 				<span>
 					Search :
 				</span> 
-				<input 
+				<input
+					data-testid="search" 
 					value={search}
 					onChange={(e) => setSearch(e.target.value)} />
 			</div>
 			<div className="last-updated">
-				<span>
+				<span data-testid="date">
 					Last Updated On: {date}
 				</span>
 				<button onClick={value?.getData}>

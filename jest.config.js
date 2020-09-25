@@ -3,5 +3,6 @@ module.exports = {
   testEnvironment: 'node',
   setupFilesAfterEnv: [
     "<rootDir>/jest.setup.tsx"
-  ]
+  ],
+  resolver: "jest-webpack-resolver"
 };

@@ -16,12 +16,6 @@ class Api implements IApi{
 	}
 }
 
-class CharactersApi extends Api {
-	constructor(){
-		super("getCharacters", Methods.GET, "characters");
-	}
-}
-
 class SummaryApi extends Api {
 	constructor(){
 		super("getSummary", Methods.GET, "summary");
@@ -30,5 +24,8 @@ class SummaryApi extends Api {
 
 export default {
 	SummaryApi,
-	CharactersApi
+};
+
+export {
+	SummaryApi
 };
