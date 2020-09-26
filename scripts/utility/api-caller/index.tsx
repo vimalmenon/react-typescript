@@ -5,7 +5,7 @@ class ApiCaller<T> {
 	private promise;
 	constructor (data:IApi) {
 		this.controller = new AbortController();
-		const signal = new AbortController().signal;
+		const signal = this.controller.signal;
 		const {url, method} = data;
 		this.promise = new Promise<T>((resolve, reject) => {
 			fetch(url, {method, signal})
@@ -18,14 +18,6 @@ class ApiCaller<T> {
 				});
 		});
 		
-	}
-	public success (successCallback:(data:T) => void):ApiCaller<T> {
-		this.promise = this.promise.then(successCallback);
-		return this;
-	}
-	public failure (failureCallback:() => void):ApiCaller<T> {
-		this.promise = this.promise.catch(failureCallback);
-		return this;
 	}
 	public getPromise ():Promise<T> {
 		return this.promise;

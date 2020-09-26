@@ -30,6 +30,7 @@
     "eslint-loader": "^4.0.2",
     "eslint-plugin-react": "^7.20.6",
     "html-webpack-plugin": "^4.5.0",
+    "jest": "^26.4.2",
     "jest-webpack-resolver": "^0.3.0",
     "jsdom": "16.4.0",
     "jsdom-global": "3.0.2",
@@ -45,8 +46,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "babel-jest": "^26.3.0",
-    "jest": "^26.4.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",

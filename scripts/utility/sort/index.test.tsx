@@ -10,50 +10,55 @@ interface ITestString{
     value:string;
 }
 describe("sortArray utility :", () => {
-    const numberSort:ITestNumber[] = [
-        {
-            id:2,
-            value: "Two",
-        },
-        {
-            id:1,
-            value: "One",
-        },
-        {
-            id:4,
-            value: "Four",
-        },
-        {
-            id:4,
-            value: "five",
-        },
-        {
-            id:0,
-            value: "Zero",
-        },
-        {
-            id:3,
-            value: "Three",
-        }
-    ];
-    const stringSort:ITestString[] = [
-        {
-            id:"d",
-            value: "Three",
-        },
-        {
-            id:"a",
-            value: "Zero",
-        },
-        {
-            id:"b",
-            value: "One",
-        },
-        {
-            id:"c",
-            value: "Two",
-        }
-    ];
+    let numberSort:ITestNumber[] = [];
+    let stringSort:ITestString[] = [];
+    beforeEach(() => {
+        numberSort = [
+            {
+                id:2,
+                value: "Two",
+            },
+            {
+                id:1,
+                value: "One",
+            },
+            {
+                id:4,
+                value: "Four",
+            },
+            {
+                id:4,
+                value: "five",
+            },
+            {
+                id:0,
+                value: "Zero",
+            },
+            {
+                id:3,
+                value: "Three",
+            }
+        ];
+        stringSort = [
+            {
+                id:"d",
+                value: "Three",
+            },
+            {
+                id:"a",
+                value: "Zero",
+            },
+            {
+                id:"b",
+                value: "One",
+            },
+            {
+                id:"c",
+                value: "Two",
+            }
+        ];
+    });
+
 
     test("Testing the descending sort with numbers :", () => {
         const results:ITestNumber[] = [
@@ -105,11 +110,11 @@ describe("sortArray utility :", () => {
             },
             {
                 id:4,
-                value: "five",
+                value: "Four",
             },
             {
                 id:4,
-                value: "Four",
+                value: "five",
             }
         ];
         expect(sortArray<ITestNumber>(numberSort, "id", false)).toEqual(results);

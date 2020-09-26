@@ -20,24 +20,24 @@ export const useInit = ():IInit => {
 	const [error, setError] = React.useState<string>("");
 	const [data, setData] = React.useState<ISummary|null>(null);
 
-	const getData = () => {
+	const getData = async () => {
 		setLoading(true);
 		setError("");
 		setLoading(true);
-		new ApiCaller<ISummary>(new SummaryApi())
-			.success((value) => {
-				if(value.Message) {
-					setError(value.Message);
-				} else {
-					const {Countries, CountriesHash} = setActiveCasesAndHash(value.Countries);
-					setData(({...value, Countries, CountriesHash}));
-				}
-				setLoading(false);
-			})
-			.failure(() => {
-				setLoading(false);
-				setError("Error while making request");
-			});
+		try{
+			const value = await new ApiCaller<ISummary>(new SummaryApi()).getPromise();
+			
+			if(value.Message) {
+				setError(value.Message);
+			} else {
+				const {Countries, CountriesHash} = setActiveCasesAndHash(value.Countries);
+				setData(({...value, Countries, CountriesHash}));
+			}
+		}catch {
+			setLoading(false);
+			setError("Error while making request");
+		}
+		setLoading(false);
 	};
 	return {loading, error, getData, data};
 };

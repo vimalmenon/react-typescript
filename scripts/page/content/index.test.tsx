@@ -24,6 +24,7 @@ describe("Content component :", () => {
         var mock = jest.spyOn(Service, "useInit").mockImplementation(() => result);
         let component = shallow(<Content/>);
         expect(mock).toBeCalled();
+
     });
 
     test("Content component when there is error :", () => {
