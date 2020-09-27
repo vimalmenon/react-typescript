@@ -31,3 +31,6 @@ Open [localhost:8080](http://localhost:8080) to access the application.
 
 
 ![Detail Page.](/detail.png "Detail Screen.")
+
+## AWS Hosted
+[AWS Hosted](http://ec2-18-222-193-104.us-east-2.compute.amazonaws.com/)
