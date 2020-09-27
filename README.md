@@ -22,14 +22,12 @@ npm run start:server
 
 ## Open Browser
 
-Open [localhost:8080](http://localhost:8080) to access the application
+Open [localhost:8080](http://localhost:8080) to access the application.
 
 
-```sh
-npm run start:server
-```
 
-![Dashboard Page.](/dashboard.png "Dashboard image.")
+## Screenshots
+![Dashboard Page.](/dashboard.png "Dashboard Screen.")
 
 
-![Detail Page.](/detail.png "Detail image.")
+![Detail Page.](/detail.png "Detail Screen.")
