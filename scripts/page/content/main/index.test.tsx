@@ -157,6 +157,42 @@ describe("Main component :", () => {
         
     });
 
+    test("Main component to with 0 value passed Global data :", () => {
+        const SortedCountries:ICountry[] = [];
+        const Global = {
+            NewConfirmed: 0,
+            NewDeaths: 0,
+            NewRecovered: 0,
+            TotalConfirmed: 32135733,
+            TotalDeaths: 981743,
+            TotalRecovered: 22147853
+        };
+        const data:ISummary = {
+            Countries:SortedCountries,
+            Date:"2020-09-25T09:50:46Z",
+            Global,
+            Message:""
+        };
+        const dispatch = jest.fn(() => 1);
+        jest.spyOn(React, "useState").mockImplementation(() => {
+            return [SortedCountries, dispatch];
+        });
+        
+        jest.spyOn(React, "useContext").mockImplementation(() => ({data}));
+        
+        
+        
+        let component = shallow(<Main />);
+        expect(component.find('[data-testid="TotalConfirmed"]').text()).toBe(String(Global.TotalConfirmed));
+        expect(component.find('[data-testid="TotalDeaths"]').text()).toBe(String(Global.TotalDeaths));
+        expect(component.find('[data-testid="TotalRecovered"]').text()).toBe(String(Global.TotalRecovered));
+        expect(component.find('[data-testid="TotalActive"]').text()).toBe(String(Global.TotalConfirmed-Global.TotalDeaths-Global.TotalRecovered));
+        expect(component.find('[data-testid="NewConfirmed"]').text()).toBe(String(Global.NewConfirmed));
+        expect(component.find('[data-testid="NewDeaths"]').text()).toBe(String(Global.NewDeaths));
+        expect(component.find('[data-testid="NewRecovered"]').text()).toBe(String(Global.NewRecovered));
+        
+    });
+
     test("Main component to have Search filter :", () => {
         const SortedCountries:ICountry[] = [
             {
@@ -213,6 +249,10 @@ describe("Main component :", () => {
         const dispatch = jest.fn(() => 1);
         const search = "tan";
         jest.spyOn(services, "useSetSearch").mockImplementation(() => ({search, setSearch:dispatch}));
+        jest.spyOn(React, "useContext").mockImplementation(() => ({data}));
+        jest.spyOn(React, "useState").mockImplementation(() => {
+            return [SortedCountries, dispatch];
+        });
         let component = shallow(<Main />);
         expect(component.find("Country").length).toBe(1);
         

@@ -2,7 +2,6 @@ import * as React from "react";
 import styled from "styled-components";
 
 import {
-	useParams,
 	Link
 } from "react-router-dom";
 
@@ -10,6 +9,7 @@ import {
 import {NoRoute} from "../../../dumb-components";
 
 import context from "../index.context";
+import {getParamsCode} from "./index.services";
 
 import Graph from "./graph";
 import Details from "./details";
@@ -38,10 +38,9 @@ const CountryCodeWrapper  = styled.div`
 
 const CountryCode:React.FC = () => {
 	const value = React.useContext(context);
-	const { code } = useParams();
+	const { code } = getParamsCode();
 	const CountriesHash = value?.data?.CountriesHash;
 	const countryDetails = CountriesHash?.[code];
-	console.log(countryDetails);
 	if (countryDetails) {
 		return (
 			<CountryCodeWrapper>

@@ -13,7 +13,7 @@ export const useSetSearch = (initialSort:string):{search:string, setSearch:(stri
 	return {search, setSearch};
 };
 
-export const useSortCountries = (setCountries:(ICountry)=>void, setSortIndex:(ICountry)=>void):{sortCountries:(Countries:ICountry[], sortValue:string, updatedSortedIndex:number)=> void} => {
+export const useSortCountries = (setCountries:(ICountry)=>void, setSortIndex:(number)=>void):{sortCountries:(Countries:ICountry[], sortValue:string, updatedSortedIndex:number)=> void} => {
 	const sortCountries = (Countries, sortValue, updatedSortedIndex) => {
 		setCountries([...sortArray<ICountry>(Countries, sortValue, updatedSortedIndex>0)]);
 		setSortIndex(updatedSortedIndex);

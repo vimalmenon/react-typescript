@@ -3,6 +3,7 @@ import * as React from "react";
 import Search from "./index";
 import {shallow} from "enzyme";
 import { ISummary } from "../../../../types/isummary.d";
+import {formatDate} from "utility"
 
 describe("Search component :", () => {
     afterEach(() => {
@@ -35,7 +36,6 @@ describe("Search component :", () => {
 
     test("Search component check input search value :", () => {
         
-        const date="Last Updated On: September 25, 2020, 05:50:46 PM";
         const search = "";
         const setSearch = jest.fn((e) => e);
         const data:ISummary = {
@@ -54,7 +54,16 @@ describe("Search component :", () => {
         const result = {loading: false, error:"", data, getData: () =>{}};
         jest.spyOn(React, "useContext").mockImplementation(() => result);
         let component = shallow(<Search search={search} setSearch={setSearch} />);
-        expect(component.find('[data-testid="date"]').text()).toBe(date);
+        expect(component.find('[data-testid="date"]').text()).toBe(`Last Updated On: ${formatDate(data.Date)}`);
+    });
+
+    test("Search component with no date passed :", () => {
+        const search = "";
+        const setSearch = jest.fn((e) => e);
+        const result = {loading: false, error:"", data:null};
+        jest.spyOn(React, "useContext").mockImplementation(() => result);
+        let component = shallow(<Search search={search} setSearch={setSearch} />);
+        expect(component.find('[data-testid="date"]').text()).toBe(`Last Updated On: ${formatDate("")}`);
     });
 
     test("Search component check input search value :", () => {
@@ -79,8 +88,6 @@ describe("Search component :", () => {
         let component = shallow(<Search search={search} setSearch={setSearch} />);
         component.find('[data-testid="search"]').simulate('change', { target: { value: 'Hello' } });
         expect(setSearch).toBeCalledTimes(1);
-
-        
         
     });
     

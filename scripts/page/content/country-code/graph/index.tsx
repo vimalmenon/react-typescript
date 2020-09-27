@@ -34,13 +34,20 @@ const GraphWrapper  = styled.div`
 	}
 `;
 const Graph:React.FC<ICountryDetails> = ({countryDetails}) => {
-	const TotalConfirmed = countryDetails?.TotalConfirmed||0;
-	const TotalRecovered = countryDetails?.TotalRecovered||0;
-	const TotalDeaths = countryDetails?.TotalDeaths||0;
-	const TotalActive = countryDetails?.TotalActive ||0;
-	const TotalRecoveredPercent = Math.ceil(TotalRecovered/TotalConfirmed*100);
-	const TotalDeathsPercent = Math.round(TotalDeaths/TotalConfirmed*100);
-	const TotalActivePercent = Math.round(TotalActive/TotalConfirmed*100);
+	const TotalConfirmed = countryDetails.TotalConfirmed||0;
+	const TotalRecovered = countryDetails.TotalRecovered||0;
+	const TotalDeaths = countryDetails.TotalDeaths||0;
+	const TotalActive = countryDetails.TotalActive ||0;
+	let TotalRecoveredPercent,TotalDeathsPercent,TotalActivePercent;
+	if (TotalConfirmed === 0) {
+		TotalRecoveredPercent = 100;
+		TotalDeathsPercent = 0;
+		TotalActivePercent = 0;
+	} else {
+		TotalRecoveredPercent = Math.ceil(TotalRecovered/TotalConfirmed*100);
+		TotalDeathsPercent = Math.round(TotalDeaths/TotalConfirmed*100);
+		TotalActivePercent = Math.round(TotalActive/TotalConfirmed*100);
+	}
 	return (
 		<GraphWrapper>
 			<div className="color-code">
