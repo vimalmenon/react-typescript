@@ -52,13 +52,13 @@ const Graph:React.FC<ICountryDetails> = ({countryDetails}) => {
 		<GraphWrapper>
 			<div className="color-code">
 				<div className="new-recovery">
-					Total Recovery
+					Total Recovery : {TotalRecoveredPercent}%
 				</div>
 				<div className="new-confirm">
-					Total Active
+					Total Active : {TotalActivePercent}%
 				</div>
 				<div className="new-death">
-					Total Death
+					Total Death : {TotalDeathsPercent}%
 				</div>
 				
 			</div>

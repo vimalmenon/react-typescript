@@ -72,29 +72,30 @@ const Details:React.FC<ICountryDetails> = ({countryDetails}) => {
 					<div>Total Active</div>
 					<div data-testid="TotalActive">{countryDetails.TotalActive}</div>
 				</div>
-				<div className="table-body">
-					<div>Total Confirmed</div>
-					<div data-testid="TotalConfirmed">{countryDetails.TotalConfirmed}</div>
-				</div>
 				<div className={countryDetails.NewConfirmed>0 ? "table-body new-confirm":"table-body"}>
 					<div>New Confirmed</div>
 					<div data-testid="NewConfirmed">{countryDetails.NewConfirmed>0? `+${countryDetails.NewConfirmed}`: countryDetails.NewConfirmed}</div>
 				</div>
 				<div className="table-body">
-					<div>Total Recovered</div>
-					<div data-testid="TotalRecovered">{countryDetails.TotalRecovered}</div>
+					<div>Total Confirmed</div>
+					<div data-testid="TotalConfirmed">{countryDetails.TotalConfirmed}</div>
 				</div>
 				<div className={countryDetails.NewRecovered>0 ? "table-body new-recovery":"table-body"}>
 					<div>New Recovered</div>
 					<div data-testid="NewRecovered">{countryDetails.NewRecovered>0 ? `+${countryDetails.NewRecovered}`: countryDetails.NewRecovered}</div>
 				</div>
 				<div className="table-body">
-					<div>Total Deaths</div>
-					<div data-testid="TotalDeaths">{countryDetails.TotalDeaths}</div>
+					<div>Total Recovered</div>
+					<div data-testid="TotalRecovered">{countryDetails.TotalRecovered}</div>
 				</div>
+				
 				<div className={countryDetails.NewDeaths>0 ? "table-body new-death":"table-body"}>
 					<div>New Deaths</div>
 					<div data-testid="NewDeaths">{countryDetails.NewDeaths>0? `+${countryDetails.NewDeaths}`: countryDetails.NewDeaths}</div>
+				</div>
+				<div className="table-body">
+					<div>Total Deaths</div>
+					<div data-testid="TotalDeaths">{countryDetails.TotalDeaths}</div>
 				</div>
 			</div>
 		</DetailsWrapper>

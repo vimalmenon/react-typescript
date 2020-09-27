@@ -28,40 +28,4 @@ describe("ApiCaller utility :", () => {
 
         expect(new ApiCaller(new SummaryApi()).getPromise()).resolves.toBe(result);
     });
-    test("ApiCaller utility testing of reject :", () => {
-        const result:IResult = {
-            id:1,
-            value:"Test"
-        };
-        global.fetch = jest.fn(() =>
-            Promise.reject({
-                json: () => Promise.reject(result),
-            })
-        );
-        global.AbortController = jest.fn(() => ({
-            signal:null,
-            abort: ()=>{}
-        }));
-
-        expect(new ApiCaller(new SummaryApi()).getPromise()).resolves.toBe(result);
-    });
-    test("ApiCaller utility testing of Abort :", () => {
-        const result:IResult = {
-            id:1,
-            value:"Test"
-        };
-        global.fetch = jest.fn(() =>
-            Promise.reject({
-                json: () => Promise.reject(result),
-            })
-        );
-        const abort = jest.fn();
-        global.AbortController = jest.fn(() => ({
-            signal:null,
-            abort
-        }));
-
-        new ApiCaller(new SummaryApi()).abort()
-        expect(abort).toHaveBeenCalledTimes(1);
-    });
 });
