@@ -3,7 +3,6 @@ import * as React from "react";
 import Main from "./index";
 import {shallow} from "enzyme";
 
-
 import * as services from "./index.services";
 
 import {ICountry, ISummary } from "../../../types/isummary.d";
@@ -18,6 +17,55 @@ describe("Main component :", () => {
         let component = shallow(<Main />);
         
         expect(component.find("Search").length).toBe(1);
+        
+    });
+
+    test("services component testing useSortCountries :", () => {
+
+        const setCountries = jest.fn();
+        const setSortIndex = jest.fn();
+        const SortedCountries:ICountry[] = [
+            {
+                Country: "Afghanistan",
+                CountryCode: "AF",
+                Date: "2020-09-25T09:50:46Z",
+                NewConfirmed: 25,
+                NewDeaths: 5,
+                NewRecovered: 9,
+                TotalConfirmed: 39170,
+                TotalDeaths: 1451,
+                TotalRecovered: 32619,
+                TotalActive: 5100
+            },
+            {
+                Country: "Albania",
+                CountryCode: "AL",
+                Date: "2020-09-25T09:50:46Z",
+                NewConfirmed: 134,
+                NewDeaths: 0,
+                NewRecovered: 100,
+                TotalConfirmed: 12921,
+                TotalDeaths: 370,
+                TotalRecovered: 7239,
+                TotalActive: 5312
+            },
+            {
+                Country: "Algeria",
+                CountryCode: "DZ",
+                Date: "2020-09-25T09:50:46Z",
+                NewConfirmed: 179,
+                NewDeaths: 5,
+                NewRecovered: 116,
+                TotalConfirmed: 50579,
+                TotalDeaths: 1703,
+                TotalRecovered: 35544,
+                TotalActive: 13332
+            }
+        ];
+        const {sortCountries} = services.useSortCountries(setCountries, setSortIndex);
+        sortCountries(SortedCountries, "TotalConfirmed", 1);
+        expect(setCountries).toHaveBeenCalledTimes(1);
+        expect(setSortIndex).toHaveBeenCalledTimes(1)
         
     });
     test("Main component to have Country Component :", () => {

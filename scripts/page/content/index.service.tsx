@@ -7,7 +7,7 @@ const {SummaryApi} = api;
 
 export function setActiveCasesAndHash(array:ICountry[]=[]):{Countries:ICountry[], CountriesHash:ICountriesHash} {
 	const CountriesHash = {};
-	const Countries =  array?.map((value) => {
+	const Countries =  array.map((value) => {
 		CountriesHash[value.CountryCode] = value;
 		value.TotalActive = value.TotalConfirmed- value.TotalDeaths - value.TotalRecovered;
 		return value;
