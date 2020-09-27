@@ -9,6 +9,10 @@ import {ICountry, ICountriesHash, ISummary} from "../../types/isummary.d";
 
 describe("Content component :", () => {
 
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     test("Content component to contain Loading component when loading is set true :", () => {
         const result = {loading: true, error:"", data: null, getData : () => {}};
         jest.spyOn(Service, "useInit").mockImplementation(() => result);
@@ -22,7 +26,7 @@ describe("Content component :", () => {
         
         const result = {loading: true, error:"", data: null, getData : () => {}};
         var mock = jest.spyOn(Service, "useInit").mockImplementation(() => result);
-        let component = shallow(<Content/>);
+        shallow(<Content/>);
         expect(mock).toBeCalled();
 
     });
@@ -40,7 +44,7 @@ describe("Content component :", () => {
         const getData = jest.fn();
         const result = {loading: false, error:"Error message", data: null, getData};
         jest.spyOn(Service, "useInit").mockImplementation(() => result);
-        let component = mount(<Content/>);
+        mount(<Content/>);
         expect(getData).toBeCalledTimes(1);
     });
 

@@ -2,7 +2,7 @@ import { ISearch } from "../../../../types/icomponent.d";
 import * as React from "react";
 import styled from "styled-components";
 
-
+import {formatDate} from "utility";
 import context from "../../index.context";
 
 const SearchWrapper  = styled.div`
@@ -35,14 +35,6 @@ const SearchWrapper  = styled.div`
 
 const Search:React.FC<ISearch>  = ({search, setSearch}) => {
 	const value = React.useContext(context);
-	const date = new Intl.DateTimeFormat("en-GB", {
-		hour:"2-digit",
-		minute:"2-digit",
-		second:"2-digit",
-		year: "numeric",
-		month: "long",
-		day: "2-digit"
-	})?.format(new Date(value?.data?.Date||""));
 	return (
 		<SearchWrapper>
 			<div className="search">
@@ -56,7 +48,7 @@ const Search:React.FC<ISearch>  = ({search, setSearch}) => {
 			</div>
 			<div className="last-updated">
 				<span data-testid="date">
-					Last Updated On: {date}
+					Last Updated On: {formatDate(value?.data?.Date||"")}
 				</span>
 				<button onClick={value?.getData}>
 					Refresh

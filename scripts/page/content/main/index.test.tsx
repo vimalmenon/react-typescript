@@ -1,9 +1,7 @@
 import "jsdom-global/register";
 import * as React from "react";
 import Main from "./index";
-import {shallow, mount} from "enzyme";
-
-import * as MainComponent from "./index";
+import {shallow} from "enzyme";
 
 
 import * as services from "./index.services";

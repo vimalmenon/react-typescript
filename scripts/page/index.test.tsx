@@ -9,6 +9,9 @@ describe("Page component :", () => {
     beforeEach(() => {
         component = shallow(<Page/>);
     });
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     test("Page component to contain Content component :", () => {
         const contentComponent = component.find("Content");

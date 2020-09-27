@@ -19,3 +19,7 @@ export interface ISearch {
 	search:string;
 	setSearch:(e)=>void;
 }
+
+export interface ICountryDetails {
+	countryDetails:ICountry
+}

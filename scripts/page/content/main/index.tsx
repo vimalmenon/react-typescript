@@ -1,6 +1,4 @@
 import * as React from "react";
-
-import {sortArray} from "utility";
 import styled from "styled-components";
 
 import {SortIcon} from "../../../dumb-components";
@@ -84,10 +82,6 @@ const Main:React.FC = () => {
 	const {sortIndex, setSortIndex} = useSortIndex(2);
 	const {search, setSearch} = useSetSearch("");
 	const {sortCountries} = useSortCountries(setCountries, setSortIndex);
-	/*const sortCountries = (Countries, sortValue, updatedSortedIndex) => {
-		setCountries([...sortArray<ICountry>(Countries, sortValue, updatedSortedIndex>0)]);
-		setSortIndex(updatedSortedIndex);
-	};*/
 	React.useEffect(() => {
 		sortCountries(Countries, "TotalConfirmed", sortIndex);
 	}, []);

@@ -1,7 +1,7 @@
 import "jsdom-global/register";
 import * as React from "react";
 import Country from "./index";
-import {shallow, mount} from "enzyme";
+import {mount} from "enzyme";
 import { ICountry } from "../../../../types/isummary.d";
 
 import {

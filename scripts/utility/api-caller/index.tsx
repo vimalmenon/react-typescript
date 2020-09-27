@@ -7,6 +7,7 @@ class ApiCaller<T> {
 		this.controller = new AbortController();
 		const signal = this.controller.signal;
 		const {url, method} = data;
+
 		this.promise = new Promise<T>((resolve, reject) => {
 			fetch(url, {method, signal})
 				.then((response) => response.json())

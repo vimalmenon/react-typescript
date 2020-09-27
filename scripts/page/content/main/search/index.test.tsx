@@ -1,10 +1,13 @@
 import "jsdom-global/register";
 import * as React from "react";
 import Search from "./index";
-import {shallow, mount} from "enzyme";
-import { ICountry, ISummary } from "../../../../types/isummary.d";
+import {shallow} from "enzyme";
+import { ISummary } from "../../../../types/isummary.d";
 
 describe("Search component :", () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     test("Search component check input search value :", () => {
         
