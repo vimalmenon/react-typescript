@@ -1,7 +1,7 @@
 
 # COVID-19 React Tracking Application
 
-This is COVID-19 tracking application build in React.js and typescript.
+This is COVID-19 tracking application built in React.js and typescript.
 
 Data source for this application : [Covid 19](https://covid19api.com)
 
